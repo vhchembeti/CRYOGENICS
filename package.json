@@ -1,0 +1,18 @@
+{
+  "name": "practice-assessments-quiz-app",
+  "version": "1.0.0",
+  "description": "Modern responsive quiz web application for 12 practice assessments with Tailwind CSS, instant feedback, and explanations",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "keywords": [
+    "quiz",
+    "practice-assessments",
+    "tailwind",
+    "dark-mode",
+    "interactive-quiz"
+  ],
+  "author": "PrepMaster Team",
+  "license": "MIT"
+}

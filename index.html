@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en" class="dark scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cryogenic Quantum Lab - Mission Control & Practice Arena</title>
+  <meta name="description" content="Gamified practice arena for Cryogenic Electronics and Quantum Computing with 13 mission modules, XP leveling, streak multipliers, and scientific explanations.">
+
+  <!-- Google Fonts: Orbitron & Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace'],
+            display: ['"Orbitron"', 'sans-serif'],
+          },
+          colors: {
+            space: {
+              950: '#060913',
+              900: '#0a0f1d',
+              850: '#0e1628',
+              800: '#141e36',
+              700: '#1e2b4d',
+            },
+            cyber: {
+              cyan: '#00f5ff',
+              blue: '#3b82f6',
+              purple: '#a855f7',
+              emerald: '#10b981',
+              rose: '#f43f5e',
+              amber: '#f59e0b',
+            }
+          },
+          animation: {
+            'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+            'shake': 'shake 0.45s cubic-bezier(.36,.07,.19,.97) both',
+          },
+          keyframes: {
+            shake: {
+              '10%, 90%': { transform: 'translate3d(-2px, 0, 0)' },
+              '20%, 80%': { transform: 'translate3d(4px, 0, 0)' },
+              '30%, 50%, 70%': { transform: 'translate3d(-5px, 0, 0)' },
+              '40%, 60%': { transform: 'translate3d(5px, 0, 0)' }
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Neon Glow & Cyberpunk Glassmorphism */
+    body {
+      background-color: #060913;
+      color: #e2e8f0;
+      overflow-x: hidden;
+    }
+    .neon-border-cyan {
+      box-shadow: 0 0 15px rgba(0, 245, 255, 0.25), inset 0 0 15px rgba(0, 245, 255, 0.1);
+    }
+    .neon-glow-purple {
+      box-shadow: 0 0 20px rgba(168, 85, 247, 0.3);
+    }
+    .quantum-grid-bg {
+      background-image: radial-gradient(rgba(0, 245, 255, 0.08) 1px, transparent 1px),
+                        radial-gradient(rgba(168, 85, 247, 0.05) 1px, transparent 1px);
+      background-size: 32px 32px;
+      background-position: 0 0, 16px 16px;
+    }
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #0a0f1d;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #1e2b4d;
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #00f5ff;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col font-sans selection:bg-cyan-500 selection:text-slate-950 relative">
+
+  <!-- Interactive Quantum Filament Background Canvas -->
+  <canvas id="particle-canvas" class="fixed inset-0 pointer-events-none z-0 opacity-70"></canvas>
+
+  <!-- ==================== HEADER / MISSION STATUS HUD ==================== -->
+  <header class="sticky top-0 z-40 bg-space-950/80 backdrop-blur-xl border-b border-cyan-500/20 shadow-[0_4px_30px_rgba(0,0,0,0.5)]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
+      
+      <!-- Brand & Rank Info -->
+      <div class="flex items-center gap-3.5">
+        <div class="w-11 h-11 rounded-2xl bg-gradient-to-tr from-cyan-500 via-indigo-500 to-purple-600 flex items-center justify-center text-slate-950 font-bold shadow-[0_0_20px_rgba(0,245,255,0.4)]">
+          <svg class="w-6 h-6 text-slate-950" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+          </svg>
+        </div>
+        <div>
+          <div class="flex items-center gap-2">
+            <h1 class="font-display text-base sm:text-lg font-black tracking-wider text-white flex items-center gap-2">
+              CRYOGENIC QUANTUM LAB
+            </h1>
+            <span id="player-level-badge" class="font-mono text-[10px] font-extrabold uppercase px-2 py-0.5 rounded-full bg-cyan-950 text-cyan-300 border border-cyan-500/40">
+              LVL 1
+            </span>
+          </div>
+          <div class="flex items-center gap-2 text-xs text-slate-400 mt-0.5">
+            <span id="player-rank-title" class="text-cyan-300 font-semibold">Quantum Initiate</span>
+            <span>•</span>
+            <span id="player-xp-text" class="font-mono text-[11px] text-slate-300">0 / 600 XP</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Player HUD Stats & Controls -->
+      <div class="flex items-center gap-2 sm:gap-4">
+        
+        <!-- Total XP pill -->
+        <div class="hidden sm:flex flex-col items-end px-3 py-1.5 rounded-xl bg-space-900/90 border border-slate-800">
+          <span class="text-[10px] font-mono uppercase text-slate-400">Total XP</span>
+          <span id="hud-total-xp" class="font-mono font-bold text-sm text-cyan-300">0 XP</span>
+        </div>
+
+        <!-- Streak Pill -->
+        <div class="flex items-center gap-1 px-3 py-2 rounded-xl bg-space-900/90 border border-slate-800 text-xs font-bold text-amber-400 shadow-[0_0_15px_rgba(245,158,11,0.15)]">
+          <span id="hud-streak">🔥 0</span>
+        </div>
+
+        <!-- Badges Trophy Button -->
+        <button 
+          id="btn-open-badges"
+          type="button" 
+          class="flex items-center gap-1.5 px-3 py-2 rounded-xl bg-space-900/90 hover:bg-space-800 border border-purple-500/30 hover:border-purple-400/60 text-xs font-bold text-purple-300 shadow-[0_0_15px_rgba(168,85,247,0.15)] transition cursor-pointer"
+          title="Open Quantum Armory & Badges">
+          <span id="hud-badges-count">🏆 0 / 7</span>
+        </button>
+
+        <!-- Sound Toggle Button -->
+        <button 
+          id="btn-sound-toggle" 
+          type="button" 
+          class="p-2.5 rounded-xl bg-space-900/90 hover:bg-space-800 border border-slate-800 text-slate-300 hover:text-cyan-300 transition cursor-pointer"
+          title="Toggle Quantum Audio">
+          <svg id="sound-icon-on" class="w-4 h-4 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" />
+          </svg>
+          <svg id="sound-icon-off" class="w-4 h-4 hidden text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" />
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2" />
+          </svg>
+        </button>
+
+      </div>
+
+    </div>
+
+    <!-- Mini Progress Bar along header bottom -->
+    <div class="w-full h-1 bg-space-900">
+      <div id="player-xp-bar" class="h-full bg-gradient-to-r from-cyan-500 via-indigo-500 to-purple-500 transition-all duration-500" style="width: 0%;"></div>
+    </div>
+  </header>
+
+  <!-- ==================== MAIN CONTENT ==================== -->
+  <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 relative z-10">
+
+    <!-- ==================== VIEW 1: MISSION CONTROL (DASHBOARD) ==================== -->
+    <div id="view-dashboard" class="space-y-8 animate-fadeIn">
+      
+      <!-- Quantum Lab Hero Banner -->
+      <div class="relative overflow-hidden rounded-3xl bg-gradient-to-br from-space-900 via-space-850 to-space-950 border border-cyan-500/30 p-6 sm:p-8 shadow-[0_0_50px_rgba(0,245,255,0.1)]">
+        
+        <div class="relative z-10 max-w-3xl">
+          <div class="flex items-center gap-2 mb-3">
+            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-mono font-bold bg-cyan-950/80 text-cyan-300 border border-cyan-500/40">
+              <span class="w-2 h-2 rounded-full bg-cyan-400 animate-ping"></span>
+              CRYOGENIC SYSTEM STATUS: 15 mK OPERATIONAL
+            </span>
+            <span class="text-xs text-purple-300 font-mono hidden sm:inline">NPTEL / RESEARCH SYLLABUS</span>
+          </div>
+
+          <h2 class="font-display text-2xl sm:text-4xl font-black tracking-wider text-white">
+            MISSION CONTROL: QUANTUM ARENA
+          </h2>
+          <p class="mt-3 text-sm sm:text-base text-slate-300 leading-relaxed">
+            Investigate Cryogenic CMOS, Carrier Freeze-Out, Subthreshold Slope, Cryo-LNAs, Bloch Sphere Dynamics, and Quantum Metrology across <strong class="text-cyan-300">13 interactive Mission Modules</strong> (130 questions).
+          </p>
+        </div>
+
+        <!-- Quick Status Pills -->
+        <div class="mt-6 pt-6 border-t border-slate-800/80 grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-2xl font-mono">
+          <div>
+            <div class="text-xs text-slate-400">Total Missions</div>
+            <div class="text-xl font-bold text-white">13 Modules</div>
+          </div>
+          <div>
+            <div class="text-xs text-slate-400">Question Pool</div>
+            <div class="text-xl font-bold text-cyan-300">130 Items</div>
+          </div>
+          <div>
+            <div class="text-xs text-slate-400">Time Limit</div>
+            <div class="text-xl font-bold text-purple-300">30s / Question</div>
+          </div>
+          <div>
+            <div class="text-xs text-slate-400">Max Multiplier</div>
+            <div class="text-xl font-bold text-amber-400">3.0x Quantum Surge</div>
+          </div>
+        </div>
+
+        <div class="absolute -right-16 -bottom-16 w-80 h-80 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none"></div>
+      </div>
+
+      <!-- Controls: Search & Category Chips -->
+      <div class="flex flex-col md:flex-row items-stretch md:items-center justify-between gap-4">
+        
+        <!-- Search Input -->
+        <div class="relative flex-1 max-w-md">
+          <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-500">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+            </svg>
+          </div>
+          <input 
+            type="text" 
+            id="module-search-input"
+            placeholder="Search mission modules by topic, code, or keyword..."
+            class="w-full pl-10 pr-4 py-2.5 rounded-xl text-sm bg-space-900 border border-slate-800 text-white placeholder-slate-500 focus:outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 shadow-inner transition">
+        </div>
+
+        <!-- Filter Chips (Scrollable) -->
+        <div id="category-filters" class="flex items-center gap-2 overflow-x-auto pb-1 md:pb-0 scrollbar-none">
+          <!-- Populated by JS -->
+        </div>
+
+      </div>
+
+      <!-- 13 Mission Modules Grid -->
+      <div id="modules-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- 13 Cards injected via JS -->
+      </div>
+
+    </div>
+
+    <!-- ==================== VIEW 2: QUIZ ARENA (MISSION EXECUTION) ==================== -->
+    <div id="view-quiz" class="hidden max-w-3xl mx-auto space-y-6">
+      
+      <!-- Top HUD Header -->
+      <div class="bg-space-900/90 backdrop-blur-xl rounded-2xl p-4 sm:p-5 border border-cyan-500/30 shadow-[0_0_30px_rgba(0,245,255,0.15)] flex items-center justify-between gap-4">
+        
+        <div class="flex items-center gap-3">
+          <button 
+            id="btn-abort-mission" 
+            type="button" 
+            class="p-2 rounded-xl text-slate-400 hover:text-white hover:bg-space-800 border border-transparent hover:border-slate-700 transition cursor-pointer"
+            title="Abort Mission to Dashboard">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+            </svg>
+          </button>
+          <div>
+            <div class="flex items-center gap-2">
+              <span id="arena-module-code" class="font-mono text-[11px] font-bold px-2 py-0.5 rounded bg-cyan-950 text-cyan-300 border border-cyan-500/40">
+                MOD-01
+              </span>
+              <span id="arena-temp-regime" class="text-[11px] font-mono text-purple-300">
+                15mK Dilution
+              </span>
+            </div>
+            <h2 id="arena-module-title" class="text-sm sm:text-base font-bold text-white line-clamp-1 mt-0.5">
+              Week 1: Quantum Foundations
+            </h2>
+          </div>
+        </div>
+
+        <!-- Live Session Multiplier & XP Counter -->
+        <div class="flex items-center gap-2.5">
+          <span id="arena-streak-badge" class="px-3 py-1 rounded-xl text-xs font-mono font-semibold text-slate-400 bg-space-800 border border-slate-700">
+            1.0x MULTIPLIER
+          </span>
+          <span id="arena-session-xp" class="font-mono text-xs font-bold text-cyan-300 px-2.5 py-1 rounded-xl bg-cyan-950/80 border border-cyan-500/30">
+            +0 XP
+          </span>
+        </div>
+
+      </div>
+
+      <!-- Animated 30-Second Countdown Timer Bar -->
+      <div class="bg-space-900/90 rounded-2xl p-4 border border-slate-800 shadow-md space-y-2">
+        <div class="flex items-center justify-between text-xs font-mono font-bold">
+          <span id="arena-question-counter" class="text-cyan-400 tracking-wider">
+            QUESTION 1 OF 10
+          </span>
+          <div class="flex items-center gap-1.5">
+            <svg class="w-3.5 h-3.5 text-cyan-400 animate-spin" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            <span id="arena-timer-seconds" class="text-cyan-300">30s</span>
+          </div>
+        </div>
+
+        <div class="w-full h-2 bg-space-950 rounded-full overflow-hidden border border-slate-800/80">
+          <div id="arena-timer-progress" class="h-full bg-gradient-to-r from-cyan-500 to-teal-400 transition-all duration-300" style="width: 100%;"></div>
+        </div>
+      </div>
+
+      <!-- Interactive Question Card -->
+      <div id="quiz-arena-container" class="bg-space-900/90 backdrop-blur-xl rounded-3xl p-6 sm:p-8 border border-slate-800 shadow-xl space-y-6 relative transition-transform">
+        
+        <!-- Question Prompt -->
+        <h3 id="arena-question-prompt" class="text-lg sm:text-xl font-bold text-white leading-relaxed tracking-wide">
+          Loading quantum problem prompt...
+        </h3>
+
+        <!-- Options Grid (A, B, C, D) -->
+        <div id="arena-options-grid" class="space-y-3">
+          <!-- Injected via JS -->
+        </div>
+
+        <!-- Scientific Context / Explanation Box (Illuminates upon answer) -->
+        <div id="arena-explanation-box" class="hidden mt-4 p-5 rounded-2xl bg-cyan-950/40 border border-cyan-500/40 text-cyan-100 shadow-[0_0_25px_rgba(0,245,255,0.15)] animate-fadeIn">
+          <div class="flex items-center gap-2 text-xs font-mono font-bold uppercase tracking-wider text-cyan-300 mb-1.5">
+            <svg class="w-4 h-4 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            Physical Explanation & Key Concept
+          </div>
+          <p id="arena-explanation-text" class="text-sm leading-relaxed text-slate-200">
+            <!-- Text injected via JS -->
+          </p>
+        </div>
+
+      </div>
+
+      <!-- Arena Action Footer -->
+      <div class="flex items-center justify-between gap-4 pt-2">
+        <div class="text-xs text-slate-500 font-mono hidden sm:block">
+          💡 Press <kbd class="px-1.5 py-0.5 rounded bg-space-800 border border-slate-700 text-slate-300 font-mono text-[10px]">A-D</kbd> or <kbd class="px-1.5 py-0.5 rounded bg-space-800 border border-slate-700 text-slate-300 font-mono text-[10px]">1-4</kbd> to select
+        </div>
+
+        <button 
+          id="btn-arena-next" 
+          type="button" 
+          class="hidden ml-auto inline-flex items-center gap-2 px-6 py-3 rounded-2xl text-sm font-bold text-slate-950 bg-gradient-to-r from-cyan-400 via-teal-300 to-emerald-400 hover:from-cyan-300 hover:to-emerald-300 shadow-[0_0_25px_rgba(6,182,212,0.4)] active:scale-95 transition cursor-pointer">
+          <span id="btn-arena-next-text">Next Question</span>
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/></svg>
+        </button>
+      </div>
+
+    </div>
+
+    <!-- ==================== VIEW 3: RESULTS SCREEN (MISSION DEBRIEF) ==================== -->
+    <div id="view-results" class="hidden max-w-4xl mx-auto space-y-8 animate-fadeIn">
+      
+      <!-- Debrief Summary Hero -->
+      <div class="bg-space-900/90 backdrop-blur-xl rounded-3xl p-6 sm:p-10 border border-cyan-500/30 shadow-[0_0_40px_rgba(0,245,255,0.15)] text-center space-y-6">
+        
+        <div>
+          <span id="results-rank-pill" class="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider bg-cyan-500/20 text-cyan-300 border border-cyan-400/40">
+            🏆 MISSION COMPLETED
+          </span>
+          <h2 id="results-module-title" class="font-display text-xl sm:text-3xl font-extrabold text-white mt-3">
+            Week 1: Quantum Foundations
+          </h2>
+        </div>
+
+        <!-- Big Score Metric Display -->
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-6 sm:gap-12 py-4">
+          <div class="flex flex-col items-center">
+            <span id="results-score-display" class="font-mono text-5xl sm:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-teal-300">
+              10 / 10
+            </span>
+            <span id="results-score-pct" class="text-xs font-mono text-slate-400 mt-1">100% Accuracy</span>
+          </div>
+
+          <div class="w-px h-16 bg-slate-800 hidden sm:block"></div>
+
+          <div class="flex flex-col items-center sm:items-start text-left">
+            <div id="results-xp-earned" class="font-mono text-3xl font-black text-purple-400">
+              +1,250 XP Awarded
+            </div>
+            <div class="text-xs text-slate-400 mt-0.5 font-mono">Base XP + Streak + Speed Bonus</div>
+          </div>
+        </div>
+
+        <!-- Breakdown counters -->
+        <div class="flex items-center justify-center gap-3 pt-1">
+          <span id="results-accuracy-pill" class="px-3 py-1 rounded-full text-xs font-mono font-bold bg-emerald-950/80 text-emerald-300 border border-emerald-500/40">
+            10 Correct • 0 Incorrect
+          </span>
+          <span id="results-streak-pill" class="px-3 py-1 rounded-full text-xs font-mono font-bold bg-amber-950/80 text-amber-300 border border-amber-500/40">
+            Best Streak: 5x
+          </span>
+        </div>
+
+        <!-- Newly Unlocked Badge Banner (Dynamic) -->
+        <div id="results-new-badge-notice" class="hidden p-4 rounded-2xl bg-gradient-to-r from-purple-950/80 to-indigo-950/80 border border-purple-400/50 text-purple-200 text-sm font-bold flex items-center justify-center gap-2 shadow-[0_0_20px_rgba(168,85,247,0.3)] animate-pulse">
+          <span>✨ NEW BADGE UNLOCKED:</span>
+          <span id="new-badge-name" class="text-cyan-300 font-extrabold">Absolute Zero</span>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="flex flex-wrap items-center justify-center gap-4 pt-4 border-t border-slate-800/80">
+          <button 
+            id="btn-replay-mission" 
+            type="button" 
+            class="px-6 py-3 rounded-2xl text-sm font-bold text-slate-950 bg-gradient-to-r from-cyan-400 to-teal-300 hover:from-cyan-300 hover:to-teal-200 shadow-[0_0_20px_rgba(6,182,212,0.3)] active:scale-95 transition cursor-pointer flex items-center gap-2">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
+            <span>Replay Mission</span>
+          </button>
+
+          <button 
+            id="btn-return-control" 
+            type="button" 
+            class="px-6 py-3 rounded-2xl text-sm font-semibold bg-space-800 hover:bg-space-700 text-slate-200 border border-slate-700 shadow-md active:scale-95 transition cursor-pointer flex items-center gap-2">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+            <span>Return to Mission Control</span>
+          </button>
+        </div>
+
+      </div>
+
+      <!-- Question-by-Question Review -->
+      <div class="space-y-4">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+          <div>
+            <h3 class="text-xl font-bold text-white flex items-center gap-2 font-display">
+              Scientific Question Debrief
+            </h3>
+            <p class="text-xs text-slate-400 mt-0.5">
+              Review correct answers, response times, and in-depth physical explanations.
+            </p>
+          </div>
+
+          <!-- Review Filters -->
+          <div class="flex items-center gap-1.5 p-1 rounded-xl bg-space-900 border border-slate-800">
+            <button id="filter-all-review-btn" class="px-3.5 py-1.5 rounded-xl text-xs font-bold bg-cyan-500 text-slate-950 shadow-[0_0_15px_rgba(6,182,212,0.3)] cursor-pointer">
+              All Questions (10)
+            </button>
+            <button id="filter-mistakes-btn" class="px-3.5 py-1.5 rounded-xl text-xs font-semibold bg-space-800 text-slate-400 hover:text-white cursor-pointer">
+              Review Mistakes Only
+            </button>
+          </div>
+        </div>
+
+        <div id="review-questions-list" class="space-y-4">
+          <!-- Injected via JS -->
+        </div>
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- ==================== MODAL: QUANTUM ARMORY & BADGES ==================== -->
+  <div id="modal-badges" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-space-950/80 backdrop-blur-md hidden animate-fadeIn">
+    <div class="bg-space-900 rounded-3xl max-w-2xl w-full p-6 sm:p-8 border border-purple-500/40 shadow-[0_0_50px_rgba(168,85,247,0.25)] flex flex-col max-h-[90vh]">
+      
+      <div class="flex items-center justify-between pb-4 border-b border-slate-800">
+        <div>
+          <h3 class="font-display text-lg font-bold text-white flex items-center gap-2">
+            🏆 Quantum Trophy Room & Armory
+          </h3>
+          <p class="text-xs text-slate-400 mt-0.5">
+            Earn badges by hitting speed milestones, 100% resonance, and completing missions.
+          </p>
+        </div>
+        <button 
+          id="btn-close-badges" 
+          type="button" 
+          class="p-2 text-slate-400 hover:text-white rounded-xl hover:bg-space-800 cursor-pointer">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+      </div>
+
+      <!-- Badges List -->
+      <div id="badges-list-container" class="mt-4 flex-1 overflow-y-auto space-y-3 pr-1">
+        <!-- Injected via JS -->
+      </div>
+
+      <div class="mt-4 pt-4 border-t border-slate-800 text-right">
+        <button 
+          onclick="document.getElementById('modal-badges').classList.add('hidden')"
+          type="button" 
+          class="px-5 py-2.5 rounded-xl text-xs font-bold bg-cyan-500 text-slate-950 hover:bg-cyan-400 shadow-[0_0_15px_rgba(6,182,212,0.3)] cursor-pointer">
+          Close Armory
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="questions.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

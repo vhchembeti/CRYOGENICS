@@ -1,0 +1,1079 @@
+// Cryogenic Quantum Lab - 13 Mission Modules (130 Questions Total)
+// Fully populated with authentic scientific questions, options, answer keys, and explanations.
+
+const QUANTUM_MODULES = [
+  {
+    id: 1,
+    code: "MOD-01",
+    title: "Week 1: Quantum Foundations",
+    shortTitle: "Quantum Foundations",
+    category: "Quantum Theory",
+    tempRegime: "Wave-Particle Duality",
+    icon: "atom",
+    description: "Fundamental quantum mechanics: Planck hypothesis, photoelectric effect, de Broglie wavelength, uncertainty principle, and wave equations.",
+    questions: [
+      {
+        id: 101,
+        question: "Which branch of physics primarily deals with the behavior of matter and energy at atomic and subatomic scales?",
+        options: ["Classical mechanics", "Quantum mechanics", "Thermodynamics", "Electromagnetics"],
+        correctIndex: 1,
+        explanation: "Quantum mechanics explains the behavior of matter and energy at atomic and subatomic scales."
+      },
+      {
+        id: 102,
+        question: "According to Planck’s hypothesis, electromagnetic energy is emitted in the form of",
+        options: ["Continuous waves", "Quanta", "Magnetic domains", "Photons with zero energy"],
+        correctIndex: 1,
+        explanation: "Planck proposed that energy is emitted or absorbed in discrete packets called quanta."
+      },
+      {
+        id: 103,
+        question: "Which phenomenon demonstrates the particle nature of light?",
+        options: ["Interference", "Diffraction", "Photoelectric effect", "Polarization"],
+        correctIndex: 2,
+        explanation: "The photoelectric effect demonstrates the particle nature of light because electrons are emitted only when photons carry sufficient energy."
+      },
+      {
+        id: 104,
+        question: "According to de Broglie hypothesis, the wavelength associated with a particle is given by",
+        options: ["λ = p/h", "λ = h/p", "λ = E/h", "λ = h/E"],
+        correctIndex: 1,
+        explanation: "According to de Broglie hypothesis, λ = h/p, where h is Planck’s constant and p is momentum."
+      },
+      {
+        id: 105,
+        question: "Which principle states that position and momentum of a particle cannot be simultaneously known with perfect accuracy?",
+        options: ["Pauli exclusion principle", "Heisenberg uncertainty principle", "de Broglie principle", "Bohr postulate"],
+        correctIndex: 1,
+        explanation: "The Heisenberg uncertainty principle states that position and momentum cannot both be measured exactly at the same time."
+      },
+      {
+        id: 106,
+        question: "Quantum tunneling occurs because particles possess",
+        options: ["Infinite kinetic energy", "Negative mass", "Wave-like properties", "Infinite momentum"],
+        correctIndex: 2,
+        explanation: "Quantum tunneling occurs because particles exhibit wave-like behavior and have non-zero probability of crossing potential barriers."
+      },
+      {
+        id: 107,
+        question: "The Schrödinger equation in quantum mechanics is fundamentally a",
+        options: ["Linear differential equation", "Quadratic equation", "Vector equation", "Thermodynamic relation"],
+        correctIndex: 0,
+        explanation: "The Schrödinger equation is a linear differential equation describing quantum wave functions."
+      },
+      {
+        id: 108,
+        question: "The square magnitude of the wave function |Ψ(x,t)|^2 represents",
+        options: ["Momentum", "Potential energy", "Probability density", "Electric field intensity"],
+        correctIndex: 2,
+        explanation: "The probability density is given by P(x,t) = |Ψ(x,t)|^2."
+      },
+      {
+        id: 109,
+        question: "For a physically acceptable wave function, the wave function must be",
+        options: ["Infinite and discontinuous", "Finite, single-valued, and continuous", "Purely imaginary only", "Independent of position"],
+        correctIndex: 1,
+        explanation: "A physically acceptable wave function must be finite, continuous, and single-valued."
+      },
+      {
+        id: 110,
+        question: "For a free particle with definite momentum, the probability density is",
+        options: ["Zero everywhere", "Infinite everywhere", "Constant everywhere", "Periodic in time only"],
+        correctIndex: 2,
+        explanation: "For a free particle with definite momentum, the probability density remains constant everywhere."
+      }
+    ]
+  },
+  {
+    id: 2,
+    code: "MOD-02",
+    title: "Week 2: Cryogenic CMOS & Body Effect",
+    shortTitle: "Cryo-CMOS & Body Effect",
+    category: "Device Physics",
+    tempRegime: "77K - Liquid N2",
+    icon: "chip",
+    description: "CMOS operation at low temperatures, carrier mobility enhancement, threshold voltage shifts, body effect, DIBL, and velocity saturation.",
+    questions: [
+      {
+        id: 201,
+        question: "What is the primary advantage of operating CMOS devices at cryogenic temperatures?",
+        options: ["Increased leakage current", "Reduced carrier mobility", "Lower thermal noise", "Higher oxide thickness"],
+        correctIndex: 2,
+        explanation: "Cryogenic operation significantly reduces thermal noise, improving signal integrity in quantum computing electronics."
+      },
+      {
+        id: 202,
+        question: "At cryogenic temperatures, the carrier mobility in MOSFETs generally",
+        options: ["Decreases significantly", "Remains constant", "Increases", "Becomes zero"],
+        correctIndex: 2,
+        explanation: "Reduced phonon scattering at low temperatures increases carrier mobility."
+      },
+      {
+        id: 203,
+        question: "What happens to the threshold voltage of a MOSFET at cryogenic temperatures?",
+        options: ["It decreases to zero", "It generally increases", "It remains exactly constant", "It becomes negative"],
+        correctIndex: 1,
+        explanation: "At cryogenic temperatures, incomplete ionization and other effects generally increase MOSFET threshold voltage."
+      },
+      {
+        id: 204,
+        question: "Which effect causes threshold voltage to increase when substrate bias becomes more negative in an NMOS transistor?",
+        options: ["Velocity saturation", "Body effect", "Channel length modulation", "Hot carrier effect"],
+        correctIndex: 1,
+        explanation: "When substrate bias changes, threshold voltage changes due to body effect."
+      },
+      {
+        id: 205,
+        question: "Drain-Induced Barrier Lowering (DIBL) causes the threshold voltage to",
+        options: ["Increase with drain voltage", "Decrease with drain voltage", "Remain constant with drain voltage", "Become independent of gate voltage"],
+        correctIndex: 1,
+        explanation: "DIBL reduces threshold voltage as drain voltage increases."
+      },
+      {
+        id: 206,
+        question: "What happens to the effective channel length in channel-length modulation?",
+        options: ["It increases with drain voltage", "It decreases with drain voltage", "It remains constant", "It becomes equal to oxide thickness"],
+        correctIndex: 1,
+        explanation: "In channel-length modulation, effective channel length decreases with increasing drain voltage."
+      },
+      {
+        id: 207,
+        question: "The body effect coefficient in a MOSFET is generally denoted by",
+        options: ["λ", "γ", "β", "α"],
+        correctIndex: 1,
+        explanation: "The body effect coefficient is represented by γ."
+      },
+      {
+        id: 208,
+        question: "Why is body effect generally considered undesirable in MOS circuits?",
+        options: ["It reduces oxide thickness", "It increases threshold voltage variation", "It eliminates inversion layer formation", "It makes drain current zero"],
+        correctIndex: 1,
+        explanation: "Body effect changes threshold voltage with substrate bias and increases threshold voltage variation."
+      },
+      {
+        id: 209,
+        question: "In a MOS capacitor C-V characteristic, the capacitance becomes minimum in the",
+        options: ["Accumulation region", "Depletion region", "Strong inversion region", "Flat-band condition"],
+        correctIndex: 2,
+        explanation: "In the inversion region, the depletion width becomes maximum for high frequency, minimizing capacitance."
+      },
+      {
+        id: 210,
+        question: "Velocity saturation in MOSFETs occurs because carrier velocity",
+        options: ["Becomes independent of electric field at high fields", "Becomes zero at high fields", "Decreases linearly with electric field", "Depends only on oxide capacitance"],
+        correctIndex: 0,
+        explanation: "At high electric fields, carrier velocity saturates and no longer increases proportionally with field."
+      }
+    ]
+  },
+  {
+    id: 3,
+    code: "MOD-03",
+    title: "Week 3: Freeze-Out & Scattering",
+    shortTitle: "Freeze-Out & Scattering",
+    category: "Semiconductors",
+    tempRegime: "4K - Liquid He",
+    icon: "snowflake",
+    description: "Cryostat thermal radiation shields, incomplete ionization (freeze-out), Fermi level shifts, Boltzmann approximation, and phonon suppression.",
+    questions: [
+      {
+        id: 301,
+        question: "What is the primary function of radiation shielding in a cryostat?",
+        options: ["Increase carrier mobility", "Reduce thermal radiation heat transfer", "Generate magnetic field", "Increase cryogen pressure"],
+        correctIndex: 1,
+        explanation: "Radiation shields reduce heat transfer due to thermal radiation and improve cryostat efficiency."
+      },
+      {
+        id: 302,
+        question: "As temperature decreases, incomplete ionization in semiconductors causes",
+        options: ["Increase in free carrier concentration", "Freeze-out of dopants", "Breakdown voltage reduction", "Infinite conductivity"],
+        correctIndex: 1,
+        explanation: "At very low temperatures, dopants may not ionize completely, causing carrier freeze-out."
+      },
+      {
+        id: 303,
+        question: "In an n-type semiconductor, increasing donor concentration shifts the Fermi level",
+        options: ["Toward the valence band", "Toward the conduction band", "Exactly to midgap", "Outside the bandgap"],
+        correctIndex: 1,
+        explanation: "Increasing donor concentration moves the Fermi level closer to the conduction band."
+      },
+      {
+        id: 304,
+        question: "Which approximation is commonly used for carrier concentration calculations under non-degenerate conditions?",
+        options: ["Boltzmann approximation", "Maxwell approximation", "Poisson approximation", "Drift approximation"],
+        correctIndex: 0,
+        explanation: "Under non-degenerate conditions, carrier statistics are simplified using the Boltzmann approximation."
+      },
+      {
+        id: 305,
+        question: "Which scattering mechanism becomes less dominant at cryogenic temperatures?",
+        options: ["Impurity scattering", "Phonon scattering", "Surface roughness scattering", "Coulomb scattering"],
+        correctIndex: 1,
+        explanation: "Phonon scattering decreases strongly at cryogenic temperatures because lattice vibrations reduce."
+      },
+      {
+        id: 306,
+        question: "What happens to carrier mobility at low temperatures when phonon scattering reduces?",
+        options: ["It decreases rapidly", "It remains constant", "It generally increases", "It becomes zero"],
+        correctIndex: 2,
+        explanation: "Reduced phonon scattering improves carrier mobility at low temperatures."
+      },
+      {
+        id: 307,
+        question: "The intrinsic carrier concentration of silicon at cryogenic temperature becomes",
+        options: ["Very high", "Almost temperature independent", "Very low", "Infinite"],
+        correctIndex: 2,
+        explanation: "Intrinsic carrier concentration decreases drastically at cryogenic temperatures because thermal generation becomes negligible."
+      },
+      {
+        id: 308,
+        question: "Which quantity mainly determines the probability of occupation of electron energy states?",
+        options: ["Electric field", "Fermi level", "Oxide thickness", "Carrier lifetime"],
+        correctIndex: 1,
+        explanation: "The Fermi level determines occupation probability of electronic energy states."
+      },
+      {
+        id: 309,
+        question: "In compensated semiconductors, the effective donor concentration is approximately given by",
+        options: ["ND + NA", "ND − NA", "ND * NA", "ND / NA"],
+        correctIndex: 1,
+        explanation: "For compensated semiconductors, effective donor concentration becomes Neff = ND − NA."
+      },
+      {
+        id: 310,
+        question: "Why is cryogenic operation advantageous for quantum computing electronics?",
+        options: ["It increases thermal noise", "It suppresses quantum effects", "It reduces thermal noise and improves coherence", "It eliminates carrier transport"],
+        correctIndex: 2,
+        explanation: "Cryogenic operation reduces thermal noise and improves quantum coherence, which is essential for quantum computing systems."
+      }
+    ]
+  },
+  {
+    id: 4,
+    code: "MOD-04",
+    title: "Week 4: Varshni Model & Bandgap",
+    shortTitle: "Varshni Model & Bandgap",
+    category: "Solid State",
+    tempRegime: "4K Sub-Kelvin",
+    icon: "activity",
+    description: "Temperature-dependent bandgap widening (Varshni equation), impurity scattering dominance, depletion charge scaling, and corrected Fermi potential.",
+    questions: [
+      {
+        id: 401,
+        question: "At cryogenic temperatures, which scattering mechanism becomes dominant in semiconductor devices?",
+        options: ["Phonon scattering", "Surface recombination", "Impurity scattering", "Auger scattering"],
+        correctIndex: 2,
+        explanation: "At low temperatures, lattice vibrations reduce significantly, making impurity scattering dominant."
+      },
+      {
+        id: 402,
+        question: "According to the Varshni model, what happens to the semiconductor bandgap as temperature decreases?",
+        options: ["It decreases linearly", "It increases", "It becomes zero", "It remains exactly constant"],
+        correctIndex: 1,
+        explanation: "According to the Varshni model, semiconductor bandgap widens as temperature decreases."
+      },
+      {
+        id: 403,
+        question: "The depletion charge density in a MOS structure is proportional to",
+        options: ["√NA", "1/NA", "NA^2", "1/√NA"],
+        correctIndex: 0,
+        explanation: "The depletion charge depends on substrate doping as Qd proportional to √NA."
+      },
+      {
+        id: 404,
+        question: "If the probability of occupation of an energy state equals 0.5, then the energy level is equal to",
+        options: ["Vacuum energy", "Conduction band edge", "Fermi level", "Valence band edge"],
+        correctIndex: 2,
+        explanation: "For the Fermi-Dirac distribution, occupation probability becomes 0.5 when energy equals the Fermi level."
+      },
+      {
+        id: 405,
+        question: "What happens to the resistance of heavily doped silicon at cryogenic temperatures?",
+        options: ["It becomes infinite", "It decreases", "It becomes zero", "It oscillates periodically"],
+        correctIndex: 1,
+        explanation: "In heavily doped silicon, higher carrier concentration reduces resistance despite mobility degradation."
+      },
+      {
+        id: 406,
+        question: "Which factor mainly contributes to increased threshold voltage at cryogenic temperatures?",
+        options: ["Bandgap widening", "Reduced oxide thickness", "Increase in gate leakage", "Reduction in mobility"],
+        correctIndex: 0,
+        explanation: "Bandgap widening at cryogenic temperatures increases threshold voltage."
+      },
+      {
+        id: 407,
+        question: "What is the major competing effect against bandgap widening at low temperatures?",
+        options: ["Hot carrier effect", "Gate leakage", "Dopant freeze-out", "Avalanche multiplication"],
+        correctIndex: 2,
+        explanation: "Incomplete dopant ionization (freeze-out) competes against bandgap widening effects."
+      },
+      {
+        id: 408,
+        question: "At cryogenic temperatures, the Fermi level in p-type silicon tends to move",
+        options: ["Toward the conduction band", "Toward the valence band", "Exactly to midgap", "Outside the bandgap"],
+        correctIndex: 1,
+        explanation: "At cryogenic temperatures in p-type silicon, the Fermi level shifts closer to the valence band."
+      },
+      {
+        id: 409,
+        question: "Why does intrinsic carrier concentration decrease significantly at low temperatures?",
+        options: ["Reduced phonon scattering", "Increase in carrier mobility", "Increase in bandgap energy", "Reduction in oxide thickness"],
+        correctIndex: 2,
+        explanation: "As bandgap increases at low temperatures, thermal generation decreases and intrinsic carrier concentration reduces drastically."
+      },
+      {
+        id: 410,
+        question: "In the presence of freeze-out, the corrected bulk Fermi potential is approximately expressed as",
+        options: ["ΦF + ΔΦF", "ΦF − ΔΦF", "ΦF × ΔΦF", "ΦF / ΔΦF"],
+        correctIndex: 1,
+        explanation: "Corrected bulk Fermi potential under freeze-out is ΦF* = ΦF − ΔΦF."
+      }
+    ]
+  },
+  {
+    id: 5,
+    code: "MOD-05",
+    title: "Week 5: Poole-Frenkel & Subthreshold",
+    shortTitle: "Poole-Frenkel & Subthreshold",
+    category: "Device Physics",
+    tempRegime: "100K - Sub-Cryo",
+    icon: "zap",
+    description: "Field-assisted ionization via Poole-Frenkel effect, subthreshold slope steepening, ON-current boost, thermal noise reduction, and carrier dwell time.",
+    questions: [
+      {
+        id: 501,
+        question: "The Poole–Frenkel effect is significant in cryogenic devices because",
+        options: ["It enhances avalanche breakdown", "It enables ionization of dopants via electric fields", "It increases the thermal generation rate", "It reduces the threshold voltage directly"],
+        correctIndex: 1,
+        explanation: "At low temperatures, field-assisted ionization through the Poole–Frenkel effect becomes crucial for activating frozen-out dopants."
+      },
+      {
+        id: 502,
+        question: "At cryogenic temperatures, till 100K, the subthreshold slope of a MOSFET generally",
+        options: ["Increases", "Decreases", "Remains fixed at 60 mV/dec", "Becomes infinite"],
+        correctIndex: 1,
+        explanation: "Since subthreshold swing is proportional to temperature, it improves (decreases) at low temperatures."
+      },
+      {
+        id: 503,
+        question: "Which parameter primarily determines the subthreshold swing of a MOSFET?",
+        options: ["Drain voltage", "Oxide thickness only", "Temperature", "Channel length only"],
+        correctIndex: 2,
+        explanation: "Subthreshold swing depends strongly on temperature (S proportional to T)."
+      },
+      {
+        id: 504,
+        question: "At cryogenic temperatures, the ON-current of a MOSFET generally increases because of",
+        options: ["Reduced carrier mobility", "Improved carrier mobility", "Increased gate leakage", "Increased oxide thickness"],
+        correctIndex: 1,
+        explanation: "At low temperatures, improved carrier mobility increases ON-current."
+      },
+      {
+        id: 505,
+        question: "Which effect causes the threshold voltage to increase at cryogenic temperatures?",
+        options: ["Bandgap widening", "Channel length modulation", "DIBL", "Impact ionization"],
+        correctIndex: 0,
+        explanation: "Bandgap widening at low temperature contributes to an increase in threshold voltage."
+      },
+      {
+        id: 506,
+        question: "In a MOSFET operating in the subthreshold region, the drain current depends on gate voltage",
+        options: ["Linearly", "Quadratically", "Cubically", "Exponentially"],
+        correctIndex: 3,
+        explanation: "In the subthreshold region, ID is proportional to exp(VGS / nVT), showing exponential dependence."
+      },
+      {
+        id: 507,
+        question: "Which parameter is most directly affected by dopant freeze-out?",
+        options: ["Oxide capacitance", "Carrier concentration", "Gate length", "Drain area"],
+        correctIndex: 1,
+        explanation: "Freeze-out reduces the number of ionized dopants and therefore reduces carrier concentration."
+      },
+      {
+        id: 508,
+        question: "Why are cryogenic MOSFET models different from room-temperature models?",
+        options: ["Different crystal structure forms", "Temperature-dependent device parameters change significantly", "MOSFET operation becomes classical", "Silicon becomes an insulator"],
+        correctIndex: 1,
+        explanation: "Cryogenic operation changes mobility, threshold voltage, carrier statistics, and freeze-out behavior, requiring specialized models."
+      },
+      {
+        id: 509,
+        question: "At low temperatures, which noise component is reduced significantly?",
+        options: ["Thermal noise", "Shot noise", "Flicker noise only", "Avalanche noise only"],
+        correctIndex: 0,
+        explanation: "Thermal noise power decreases directly with temperature."
+      },
+      {
+        id: 510,
+        question: "What is dwell time in semiconductor physics?",
+        options: ["Carrier transport time across the channel", "Time taken to generate carriers thermally", "Average time a carrier remains trapped", "Time for gate oxide breakdown"],
+        correctIndex: 2,
+        explanation: "Dwell time refers to how long a carrier stays trapped in a localized state before being released."
+      }
+    ]
+  },
+  {
+    id: 6,
+    code: "MOD-06",
+    title: "Week 6: Scattering & Ballistic Transport",
+    shortTitle: "Scattering & Ballistic Transport",
+    category: "Nanoelectronics",
+    tempRegime: "Nanoscale Regime",
+    icon: "maximize",
+    description: "Ionized impurity vs surface roughness scattering, Matthiessen's rule, backscattering model, critical length l0, ballistic transport, and FinFETs.",
+    questions: [
+      {
+        id: 601,
+        question: "At cryogenic temperatures, which scattering mechanism predominantly limits mobility at low inversion charge density?",
+        options: ["Surface roughness scattering", "Ionized impurity scattering", "Phonon scattering", "Impact ionization"],
+        correctIndex: 1,
+        explanation: "At low temperatures and low inversion charge density, ionized impurity scattering dominates because phonon scattering is greatly reduced."
+      },
+      {
+        id: 602,
+        question: "As temperature decreases, phonon scattering in silicon MOSFETs generally",
+        options: ["Increases", "Remains unchanged", "Decreases", "Becomes dominant"],
+        correctIndex: 2,
+        explanation: "Lattice vibrations decrease with temperature, reducing phonon scattering and improving mobility."
+      },
+      {
+        id: 603,
+        question: "The effective electric field Eeff used in mobility modeling depends primarily on",
+        options: ["Drain voltage only", "Gate oxide thickness only", "Inversion and depletion charges", "Threshold voltage only"],
+        correctIndex: 2,
+        explanation: "The effective field model uses both inversion and depletion charge contributions to characterize mobility degradation."
+      },
+      {
+        id: 604,
+        question: "Which scattering mechanism becomes dominant at high vertical electric fields in MOSFETs?",
+        options: ["Ionized impurity scattering", "Surface roughness scattering", "Coulomb scattering", "Neutral impurity scattering"],
+        correctIndex: 1,
+        explanation: "At high vertical electric fields, carriers interact strongly with the interface, making surface roughness scattering dominant."
+      },
+      {
+        id: 605,
+        question: "The Matthiessen rule is used to combine",
+        options: ["Threshold voltages", "Capacitances", "Scattering-limited mobilities", "Drain currents"],
+        correctIndex: 2,
+        explanation: "Matthiessen's rule combines multiple scattering mechanisms into an effective mobility (1/μ_eff = sum of 1/μ_i)."
+      },
+      {
+        id: 606,
+        question: "In the backscattering model, a lower backscattering coefficient indicates",
+        options: ["More carrier reflection", "Less carrier reflection", "Higher oxide capacitance", "Higher threshold voltage"],
+        correctIndex: 1,
+        explanation: "A lower backscattering coefficient means fewer carriers are reflected backward and more travel toward the drain."
+      },
+      {
+        id: 607,
+        question: "If the reflection coefficient r = 0, the transport is",
+        options: ["Completely diffusive", "Partially ballistic", "Perfectly ballistic", "Independent of channel length"],
+        correctIndex: 2,
+        explanation: "For r = 0, transport is perfectly ballistic."
+      },
+      {
+        id: 608,
+        question: "The critical length l0 in a MOSFET is associated with",
+        options: ["Oxide thickness", "Source-side carrier transport region", "Drain depletion width", "Junction depth"],
+        correctIndex: 1,
+        explanation: "The critical length is the source-side region where carrier backscattering significantly affects transport."
+      },
+      {
+        id: 609,
+        question: "Which transport mechanism becomes increasingly important as channel length approaches the carrier mean free path?",
+        options: ["Diffusive transport", "Ballistic transport", "Avalanche transport", "Thermionic emission"],
+        correctIndex: 1,
+        explanation: "As channel length becomes comparable to mean free path, ballistic transport becomes important."
+      },
+      {
+        id: 610,
+        question: "Why are FinFETs attractive for cryogenic electronics?",
+        options: ["Higher leakage current", "Improved electrostatic control", "Larger body effect", "Reduced carrier mobility"],
+        correctIndex: 1,
+        explanation: "FinFETs provide excellent electrostatic control and reduced short-channel effects, which remain beneficial at cryogenic temperatures."
+      }
+    ]
+  },
+  {
+    id: 7,
+    code: "MOD-07",
+    title: "Week 7: C-V Characteristics & Noise",
+    shortTitle: "C-V Characteristics & Noise",
+    category: "Characterization",
+    tempRegime: "High Frequency / Cryo",
+    icon: "trending-up",
+    description: "MOS capacitor C-V profiling, fixed oxide charge, flat-band voltage shift, interface traps, hysteresis, and 1/f flicker noise.",
+    questions: [
+      {
+        id: 701,
+        question: "For an ideal MOS capacitor under accumulation, the measured capacitance is approximately equal to",
+        options: ["Zero", "Depletion capacitance", "Oxide capacitance", "Substrate capacitance"],
+        correctIndex: 2,
+        explanation: "In accumulation, measured capacitance approaches the oxide capacitance."
+      },
+      {
+        id: 702,
+        question: "In a p-type MOS capacitor, a sufficiently positive gate voltage results in",
+        options: ["Accumulation", "Inversion", "Flat-band condition", "Oxide breakdown"],
+        correctIndex: 1,
+        explanation: "A positive gate voltage on a p-type substrate attracts electrons and forms inversion."
+      },
+      {
+        id: 703,
+        question: "Which charge is primarily responsible for shifting the flat-band voltage from its ideal value?",
+        options: ["Mobile inversion charge", "Fixed oxide charge", "Depletion charge", "Diffusion charge"],
+        correctIndex: 1,
+        explanation: "Fixed oxide charge shifts the flat-band voltage from its ideal value."
+      },
+      {
+        id: 704,
+        question: "At high frequency, the inversion-layer carriers cannot respond to the AC signal because",
+        options: ["Minority carrier generation is too slow", "Oxide capacitance becomes zero", "The depletion width becomes zero", "The substrate becomes metallic"],
+        correctIndex: 0,
+        explanation: "At high frequency, minority carriers cannot be generated quickly enough to follow the AC signal."
+      },
+      {
+        id: 705,
+        question: "Which region of the C–V curve exhibits the minimum capacitance in a high-frequency measurement?",
+        options: ["Accumulation", "Flat-band", "Strong inversion", "Maximum depletion"],
+        correctIndex: 2,
+        explanation: "In strong inversion (at high frequency), maximum depletion width corresponds to minimum capacitance."
+      },
+      {
+        id: 706,
+        question: "The presence of interface traps generally causes",
+        options: ["Frequency dispersion in C–V characteristics", "Reduction of oxide thickness", "Elimination of inversion", "Infinite capacitance"],
+        correctIndex: 0,
+        explanation: "Interface traps exchange charge with the semiconductor, producing frequency dispersion."
+      },
+      {
+        id: 707,
+        question: "If a MOS capacitor has an oxide capacitance of 10 pF and a depletion capacitance of 10 pF, the measured capacitance is closest to",
+        options: ["5 pF", "10 pF", "15 pF", "20 pF"],
+        correctIndex: 0,
+        explanation: "C = (Cox * Cd)/(Cox + Cd) = (10*10)/(10+10) = 5 pF."
+      },
+      {
+        id: 708,
+        question: "Hysteresis observed in a C–V curve is mainly associated with",
+        options: ["Charge trapping and de-trapping", "Increase in carrier mobility", "Reduction in oxide thickness", "Bandgap narrowing"],
+        correctIndex: 0,
+        explanation: "Hysteresis arises from charge trapping and de-trapping in oxide or interface traps."
+      },
+      {
+        id: 709,
+        question: "Which parameter can be extracted from the accumulation capacitance of a MOS capacitor?",
+        options: ["Carrier lifetime", "Mobility", "Bandgap energy", "Oxide thickness"],
+        correctIndex: 3,
+        explanation: "Oxide thickness can be extracted directly from accumulation capacitance."
+      },
+      {
+        id: 710,
+        question: "Which type of noise exhibits a power spectral density inversely proportional to frequency?",
+        options: ["Thermal noise", "Shot noise", "Flicker noise", "Burst noise"],
+        correctIndex: 2,
+        explanation: "Flicker noise is also known as 1/f noise."
+      }
+    ]
+  },
+  {
+    id: 8,
+    code: "MOD-08",
+    title: "Week 8: Cryo-LNAs & ADCs",
+    shortTitle: "Cryo-LNAs & ADCs",
+    category: "Cryo Circuits",
+    tempRegime: "4K Readout Stage",
+    icon: "radio",
+    description: "Cryo-Low Noise Amplifiers (LNAs), ENOB, SNDR, cryogenic multiplexers, circulators, thermal cooling power limits, and PLL phase noise.",
+    questions: [
+      {
+        id: 801,
+        question: "What does ENOB stand for in ADC performance evaluation?",
+        options: ["Equivalent Number of Bits", "Effective Number of Bits", "Estimated Number of Bits", "Enhanced Number of Bits"],
+        correctIndex: 1,
+        explanation: "ENOB represents the actual usable resolution after accounting for noise and distortion."
+      },
+      {
+        id: 802,
+        question: "Which parameter accounts for both noise and distortion in an ADC?",
+        options: ["INL", "DNL", "SNDR", "SNR only"],
+        correctIndex: 2,
+        explanation: "SNDR combines the effects of noise and harmonic distortion."
+      },
+      {
+        id: 803,
+        question: "The primary objective of a Cryo-LNA is to achieve",
+        options: ["Maximum output power", "Minimum chip area", "Low noise figure", "High supply voltage"],
+        correctIndex: 2,
+        explanation: "Cryo-LNAs are optimized primarily for very low noise figure."
+      },
+      {
+        id: 804,
+        question: "Which noise source becomes relatively more significant as the temperature decreases?",
+        options: ["Thermal noise", "Shot noise", "Burst noise", "Flicker noise"],
+        correctIndex: 3,
+        explanation: "Thermal noise decreases strongly at low temperatures, making flicker noise relatively more prominent."
+      },
+      {
+        id: 805,
+        question: "Cryo-LNAs are primarily used in",
+        options: ["Quantum readout systems", "Power converters", "Display drivers", "Voltage regulators"],
+        correctIndex: 0,
+        explanation: "Cryo-LNAs amplify weak quantum-readout signals with minimal added noise."
+      },
+      {
+        id: 806,
+        question: "The main purpose of cryogenic multiplexers is to",
+        options: ["Increase clock frequency", "Reduce wiring complexity", "Increase qubit temperature", "Increase supply voltage"],
+        correctIndex: 1,
+        explanation: "Multiplexers reduce the number of wires entering the cryostat, thereby reducing heat load."
+      },
+      {
+        id: 807,
+        question: "A circulator used in quantum systems is typically a",
+        options: ["Three-port non-reciprocal device", "Two-port reciprocal device", "Four-port amplifier", "Passive resistor network"],
+        correctIndex: 0,
+        explanation: "A circulator routes signals directionally between three ports as a non-reciprocal device."
+      },
+      {
+        id: 808,
+        question: "Why must power dissipation be minimized in cryogenic systems?",
+        options: ["To increase leakage current", "To reduce transistor gain", "To increase threshold voltage", "Because cooling power is limited"],
+        correctIndex: 3,
+        explanation: "Cryogenic refrigerators provide limited cooling power, so dissipation must be strictly minimized."
+      },
+      {
+        id: 809,
+        question: "PLL phase noise mainly affects",
+        options: ["Qubit operation fidelity", "Oxide thickness", "Threshold voltage", "Package inductance"],
+        correctIndex: 0,
+        explanation: "Excess PLL phase noise introduces timing errors and reduces qubit fidelity."
+      },
+      {
+        id: 810,
+        question: "Which block is generally placed closest to the qubit readout path to minimize added noise?",
+        options: ["PLL", "Cryo-LNA", "DAC", "Clock divider"],
+        correctIndex: 1,
+        explanation: "The first amplification stage is typically the Cryo-LNA to preserve signal integrity."
+      }
+    ]
+  },
+  {
+    id: 9,
+    code: "MOD-09",
+    title: "Week 9: Quantum Fundamentals & Entanglement",
+    shortTitle: "Quantum & Entanglement",
+    category: "Quantum Hardware",
+    tempRegime: "10mK Dilution Fridge",
+    icon: "share-2",
+    description: "Qubit states, superposition, Hadamard and CNOT gates, Bell states, quantum teleportation, superdense coding, no-cloning theorem, and QKD.",
+    questions: [
+      {
+        id: 901,
+        question: "A qubit can exist in",
+        options: ["Only state 0", "Only state 1", "A superposition of 0 and 1", "Only entangled states"],
+        correctIndex: 2,
+        explanation: "A qubit may exist in a superposition of |0⟩ and |1⟩."
+      },
+      {
+        id: 902,
+        question: "Which of the following is a cryogenic sensor?",
+        options: ["MOS Capacitor", "Transition Edge Sensor (TES)", "CMOS Inverter", "Ring Oscillator"],
+        correctIndex: 1,
+        explanation: "TES (Transition Edge Sensor) is a commonly used cryogenic sensor."
+      },
+      {
+        id: 903,
+        question: "What is the primary function of a Hadamard gate?",
+        options: ["Create superposition", "Measure a qubit", "Reset a qubit", "Perform amplification"],
+        correctIndex: 0,
+        explanation: "The Hadamard gate converts a basis state into a superposition state."
+      },
+      {
+        id: 904,
+        question: "Entanglement refers to",
+        options: ["A classical correlation", "A unique quantum correlation between qubits", "A method of amplification", "A type of cryogenic sensor"],
+        correctIndex: 1,
+        explanation: "Entanglement is a unique quantum correlation between qubits."
+      },
+      {
+        id: 905,
+        question: "Which gate combination is commonly used to generate an entangled Bell pair?",
+        options: ["NOT + NOT", "AND + OR", "XOR + NAND", "Hadamard + CNOT"],
+        correctIndex: 3,
+        explanation: "A Hadamard gate followed by a CNOT gate creates a Bell pair."
+      },
+      {
+        id: 906,
+        question: "Measurement of a qubit in superposition results in",
+        options: ["Another superposition", "Collapse to a definite state", "An entangled state", "Infinite outcomes"],
+        correctIndex: 1,
+        explanation: "Measurement causes a superposition state to collapse to a definite basis state."
+      },
+      {
+        id: 907,
+        question: "Quantum teleportation requires",
+        options: ["Only a quantum channel", "Only classical communication", "Both entanglement and classical communication", "Only superposition"],
+        correctIndex: 2,
+        explanation: "Quantum teleportation requires both pre-shared entanglement and classical communication."
+      },
+      {
+        id: 908,
+        question: "In superdense coding, transmission of one qubit can communicate",
+        options: ["0 classical bits", "1 classical bit", "4 classical bits", "2 classical bits"],
+        correctIndex: 3,
+        explanation: "Superdense coding transmits 2 classical bits using 1 qubit and shared entanglement."
+      },
+      {
+        id: 909,
+        question: "Which theorem states that an unknown quantum state cannot be copied exactly?",
+        options: ["Superposition theorem", "Measurement theorem", "No-cloning theorem", "Bell theorem"],
+        correctIndex: 2,
+        explanation: "The no-cloning theorem prevents exact copying of unknown quantum states."
+      },
+      {
+        id: 910,
+        question: "The main advantage of Quantum Key Distribution (QKD) is",
+        options: ["Higher clock frequency", "Detection of eavesdropping", "Lower transistor count", "Higher supply voltage"],
+        correctIndex: 1,
+        explanation: "QKD detects eavesdropping because observation disturbs quantum states."
+      }
+    ]
+  },
+  {
+    id: 10,
+    code: "MOD-10",
+    title: "Week 10: Bloch Sphere & Multiplexing",
+    shortTitle: "Bloch Sphere & Multiplexing",
+    category: "Qubit Control",
+    tempRegime: "20mK Millikelvin",
+    icon: "globe",
+    description: "Bloch sphere geometric state representation, microwave pulse manipulation, Single Electron Transistors (SET), quantum dots, FDMA, TDMA, and SDMA.",
+    questions: [
+      {
+        id: 1001,
+        question: "What is the primary purpose of the Bloch sphere?",
+        options: ["To measure qubit energy", "To visualize qubit states", "To perform error correction", "To store quantum information"],
+        correctIndex: 1,
+        explanation: "The Bloch sphere provides a graphical representation of all possible states of a single qubit."
+      },
+      {
+        id: 1002,
+        question: "Which signal is commonly used to manipulate a superconducting qubit?",
+        options: ["DC bias only", "Optical LED pulses", "Microwave pulses", "Thermal pulses"],
+        correctIndex: 2,
+        explanation: "Microwave pulses are used to rotate and manipulate qubit states with high precision."
+      },
+      {
+        id: 1003,
+        question: "Why is single-qubit control important in quantum computing?",
+        options: ["To reduce cryostat size", "To increase transistor count", "To perform precise quantum operations", "To eliminate measurements"],
+        correctIndex: 2,
+        explanation: "Single-qubit control is essential for implementing quantum gates and building larger quantum algorithms."
+      },
+      {
+        id: 1004,
+        question: "If a qubit is in the state |ψ⟩ = 0.6|0⟩ + 0.8|1⟩, what is the probability of measuring |1⟩?",
+        options: ["36%", "48%", "64%", "80%"],
+        correctIndex: 2,
+        explanation: "Measurement probability equals the square of the amplitude: P(1) = |0.8|^2 = 0.64 = 64%."
+      },
+      {
+        id: 1005,
+        question: "In a silicon two-qubit device, charge sensing is commonly performed using a",
+        options: ["MOS capacitor", "Single Electron Transistor (SET)", "Photodiode", "Ring oscillator"],
+        correctIndex: 1,
+        explanation: "SETs are extremely sensitive charge detectors widely used for qubit readout."
+      },
+      {
+        id: 1006,
+        question: "In silicon quantum processors, qubits are often formed using",
+        options: ["Quantum dots", "LED arrays", "Operational amplifiers", "Magnetic cores"],
+        correctIndex: 0,
+        explanation: "Silicon qubits are commonly realized using quantum dots created under gate electrodes."
+      },
+      {
+        id: 1007,
+        question: "FDMA multiplexing separates qubits using",
+        options: ["Different time slots", "Different temperatures", "Different voltages", "Different frequencies"],
+        correctIndex: 3,
+        explanation: "FDMA assigns a unique operating frequency to each qubit channel."
+      },
+      {
+        id: 1008,
+        question: "Which multiplexing technique provides sequential access to qubits?",
+        options: ["FDMA", "SDMA", "Hybrid FDMA-SDMA", "TDMA"],
+        correctIndex: 3,
+        explanation: "TDMA allocates different time slots to different qubits, resulting in sequential access."
+      },
+      {
+        id: 1009,
+        question: "What is the primary advantage of SDMA?",
+        options: ["Zero wiring requirement", "Parallel access through spatial isolation", "No synchronization needed", "Infinite scalability"],
+        correctIndex: 1,
+        explanation: "SDMA uses separate spatial paths, allowing simultaneous operation with reduced interference."
+      },
+      {
+        id: 1010,
+        question: "A quantum circuit consists primarily of",
+        options: ["Resistors, capacitors and inductors", "Transistors and amplifiers", "Qubits, gates and measurements", "Logic gates only"],
+        correctIndex: 2,
+        explanation: "A quantum circuit is built from qubits, quantum gates, and measurement operations."
+      }
+    ]
+  },
+  {
+    id: 11,
+    code: "MOD-11",
+    title: "Week 11: Quantum Metrology & Readout",
+    shortTitle: "Metrology & Readout",
+    category: "Readout & Sensing",
+    tempRegime: "Precision Metrology",
+    icon: "target",
+    description: "Quantum sensors, Single Photon Avalanche Diodes (SPAD), Geiger mode, decoherence, spin-to-charge conversion, QPC/SET amplifiers, and ADC digitization.",
+    questions: [
+      {
+        id: 1101,
+        question: "What is the primary objective of quantum metrology?",
+        options: ["Increase transistor density", "Improve measurement accuracy", "Reduce chip area", "Increase clock frequency"],
+        correctIndex: 1,
+        explanation: "Quantum metrology uses quantum effects to achieve measurement precision beyond classical limits."
+      },
+      {
+        id: 1102,
+        question: "Quantum sensing derives its advantage mainly from",
+        options: ["High temperature operation", "Large transistor count", "Quantum coherence and entanglement", "High supply voltage"],
+        correctIndex: 2,
+        explanation: "Quantum sensing relies on maintaining coherence and exploiting entanglement."
+      },
+      {
+        id: 1103,
+        question: "Which parameter most directly limits readout fidelity?",
+        options: ["Detector efficiency", "Chip area", "Number of qubits", "Package size"],
+        correctIndex: 0,
+        explanation: "Poor detector efficiency causes loss of information during measurement and directly reduces readout fidelity."
+      },
+      {
+        id: 1104,
+        question: "SPAD stands for",
+        options: ["Single Photon Analog Detector", "Single Photon Avalanche Diode", "Superconducting Photon Avalanche Detector", "Single Phase Avalanche Device"],
+        correctIndex: 1,
+        explanation: "SPAD stands for Single-Photon Avalanche Diode."
+      },
+      {
+        id: 1105,
+        question: "A SPAD detects single photons while operating in",
+        options: ["Linear region", "Subthreshold region", "Geiger mode", "Accumulation mode"],
+        correctIndex: 2,
+        explanation: "A SPAD operates above breakdown voltage in Geiger mode."
+      },
+      {
+        id: 1106,
+        question: "The loss of quantum information due to interaction with the environment is called",
+        options: ["Entanglement", "Amplification", "Calibration", "Decoherence"],
+        correctIndex: 3,
+        explanation: "Environmental interactions disturb quantum states and destroy coherence, known as decoherence."
+      },
+      {
+        id: 1107,
+        question: "Why is calibration of quantum sensors challenging?",
+        options: ["Large transistor dimensions", "Need for classical traceability", "Lack of ADCs", "Excess cooling power"],
+        correctIndex: 1,
+        explanation: "Quantum sensors must ultimately be referenced to classical standards, making calibration challenging."
+      },
+      {
+        id: 1108,
+        question: "In spin-qubit readout, the spin state is first converted into",
+        options: ["Temperature information", "Frequency information", "Charge information", "Optical gain"],
+        correctIndex: 2,
+        explanation: "Spin states are converted into a detectable charge configuration for readout."
+      },
+      {
+        id: 1109,
+        question: "Which block amplifies the weak output signal from a QPC/SET with minimum added noise?",
+        options: ["Mixer", "ADC", "LNA", "FPGA"],
+        correctIndex: 2,
+        explanation: "The Low-Noise Amplifier (LNA) boosts weak signals with minimal added noise."
+      },
+      {
+        id: 1110,
+        question: "After amplification and filtering, which circuit converts the analog signal into digital form?",
+        options: ["DAC", "ADC", "PLL", "Bandgap reference"],
+        correctIndex: 1,
+        explanation: "The ADC converts the amplified analog signal into digital data."
+      }
+    ]
+  },
+  {
+    id: 12,
+    code: "MOD-12",
+    title: "Week 12: Advanced Transport & S-Parameters",
+    shortTitle: "Transport & S-Parameters",
+    category: "Microwave & RF",
+    tempRegime: "5.5K Cryogenic RF",
+    icon: "compass",
+    description: "FDSOI subthreshold saturation, transconductance enhancement, S-parameters on Smith charts, NEGF quantum transport, f_MAX, and Zero Temp Coeff (ZTC).",
+    questions: [
+      {
+        id: 1201,
+        question: "As temperature decreases from 300 K to 5.5 K, the subthreshold slope (SS) of an FDSOI MOSFET generally",
+        options: ["Increases continuously", "Remains constant", "Improves and then saturates", "Becomes infinite"],
+        correctIndex: 2,
+        explanation: "Subthreshold slope improves (decreases) with temperature and then saturates at extremely low temperatures due to incomplete ionization or self-heating."
+      },
+      {
+        id: 1202,
+        question: "The improvement in NMOS transconductance at cryogenic temperatures is primarily due to",
+        options: ["Increased oxide thickness", "Reduced phonon scattering", "Higher gate leakage", "Reduced gate capacitance"],
+        correctIndex: 1,
+        explanation: "Reduced phonon scattering at low temperatures increases carrier mobility and transconductance."
+      },
+      {
+        id: 1203,
+        question: "Which parameter is commonly extracted from measured S-parameters using a small signal equivalent circuit model?",
+        options: ["Bandgap energy", "Threshold voltage only", "Carrier lifetime", "Intrinsic transconductance"],
+        correctIndex: 3,
+        explanation: "Intrinsic transconductance and parasitic elements are extracted from S-parameters."
+      },
+      {
+        id: 1204,
+        question: "If the intrinsic transconductance of an NMOS improves by 39% from a room temperature value of 10 mS, the new value is closest to",
+        options: ["11.9 mS", "12.9 mS", "13.9 mS", "14.9 mS"],
+        correctIndex: 2,
+        explanation: "10 mS + 39% of 10 mS = 10 + 3.9 = 13.9 mS."
+      },
+      {
+        id: 1205,
+        question: "Which graphical tool is commonly used to compare measured and modeled S parameters?",
+        options: ["Butterfly curve", "Load-line plot", "Smith chart", "Cole-Cole plot"],
+        correctIndex: 2,
+        explanation: "The Smith chart is standard for plotting and comparing reflection and transmission S-parameters."
+      },
+      {
+        id: 1206,
+        question: "If the source resistance decreases by 12% from 100 Ω, the new resistance is",
+        options: ["88 Ω", "92 Ω", "100 Ω", "112 Ω"],
+        correctIndex: 0,
+        explanation: "100 Ω - (12% of 100) = 100 - 12 = 88 Ω."
+      },
+      {
+        id: 1207,
+        question: "The NEGF formalism is primarily used to model",
+        options: ["Thermal expansion", "Quantum transport", "Package parasitics", "Clock jitter"],
+        correctIndex: 1,
+        explanation: "Nonequilibrium Green's Function (NEGF) formalism is the standard method for modeling quantum transport."
+      },
+      {
+        id: 1208,
+        question: "As channel length becomes extremely small, which leakage mechanism becomes increasingly important?",
+        options: ["Avalanche multiplication", "Hot-carrier degradation", "Oxide charging", "Source-to-drain tunneling"],
+        correctIndex: 3,
+        explanation: "In nanoscale transistors, source-to-drain tunneling becomes a dominant leakage mechanism."
+      },
+      {
+        id: 1209,
+        question: "The maximum oscillation frequency f_MAX is",
+        options: ["The frequency where transconductance is maximum", "The frequency where current gain = 1", "The frequency at which Mason's unilateral power gain (U) = 1", "The frequency where threshold voltage shifts"],
+        correctIndex: 2,
+        explanation: "f_MAX is defined as the frequency where Mason's unilateral power gain U equals 1."
+      },
+      {
+        id: 1210,
+        question: "What is the Zero Temperature Coefficient (ZTC) point in ID–VGS characteristics?",
+        options: ["The bias point where threshold voltage is minimum", "The point where ID reaches maximum", "The bias point where drain current (ID) remains nearly constant across different temperatures", "The point where subthreshold slope (SS) is independent of channel length"],
+        correctIndex: 2,
+        explanation: "At the ZTC bias point, mobility degradation and threshold voltage shifts cancel out, making drain current nearly independent of temperature."
+      }
+    ]
+  },
+  {
+    id: 13,
+    code: "MOD-13",
+    title: "Week 13: Comprehensive Practice Assessment",
+    shortTitle: "Comprehensive Assessment",
+    category: "Full Curriculum",
+    tempRegime: "All Regimes (300K → 15mK)",
+    icon: "award",
+    description: "Capstone synthesis covering work-function differences, carrier freeze-out, Fermi-Dirac statistics, CNOT logic, thermal noise kT, and Varshni bandgap widening.",
+    questions: [
+      {
+        id: 1301,
+        question: "In the energy band diagram, the potential difference between the vacuum level and the Fermi level of the metal in a MOS device is known as",
+        options: ["Bandgap energy", "Work-function difference", "Flat-band voltage", "Threshold voltage"],
+        correctIndex: 1,
+        explanation: "The potential difference between the vacuum level and the Fermi level of the metal is known as the work-function difference."
+      },
+      {
+        id: 1302,
+        question: "What condition leads to carrier freeze-out in semiconductors?",
+        options: ["Very low temperature", "High doping concentration", "Very high temperature", "High electric field"],
+        correctIndex: 0,
+        explanation: "Very low temperatures cause thermal energy to be insufficient for dopant ionization, leading to carrier freeze-out."
+      },
+      {
+        id: 1303,
+        question: "The Fermi–Dirac distribution function f(E) gives the probability that",
+        options: ["A state has zero energy", "A state is in the conduction band", "An electron occupies a quantum state at energy E", "An electron is excited to the valence band"],
+        correctIndex: 2,
+        explanation: "The Fermi-Dirac distribution function specifies the probability that an electron occupies a quantum state at energy E."
+      },
+      {
+        id: 1304,
+        question: "Which quantum gate performs the equivalent of a classical XOR operation on two qubits?",
+        options: ["Hadamard (H) gate", "Pauli-X gate", "CNOT (Controlled-NOT) gate", "T gate"],
+        correctIndex: 2,
+        explanation: "The CNOT gate acts as a conditional NOT operation, performing the quantum equivalent of a classical XOR."
+      },
+      {
+        id: 1305,
+        question: "The Heisenberg Uncertainty Principle states that",
+        options: ["Energy is quantized", "Δx · Δp ≥ ℏ", "Light behaves only as a wave", "It is possible to know both position and momentum precisely"],
+        correctIndex: 1,
+        explanation: "The position and momentum uncertainty relation is given by Δx · Δp ≥ ℏ."
+      },
+      {
+        id: 1306,
+        question: "A classical bit differs from a qubit because it",
+        options: ["Can store more than two values", "Can exist in a probabilistic state", "Is always in a definite 0 or 1 state", "Is immune to noise"],
+        correctIndex: 2,
+        explanation: "A classical bit is strictly binary and always in a definite 0 or 1 state, unlike a qubit which can exist in superposition."
+      },
+      {
+        id: 1307,
+        question: "Which of the following statements about cryogenic electronics is true?",
+        options: ["They require a higher voltage supply", "They increase decoherence in qubits", "They help maintain qubit stability by reducing noise", "They are only used in mobile computing"],
+        correctIndex: 2,
+        explanation: "Cryogenic electronics operate at very low temperatures to reduce thermal noise and help maintain qubit stability."
+      },
+      {
+        id: 1308,
+        question: "Which physical relationship governs thermal noise?",
+        options: ["eV", "kT, where T is the absolute temperature", "I/ω", "V^2/π"],
+        correctIndex: 1,
+        explanation: "Thermal noise power is proportional to kT, where k is Boltzmann's constant and T is absolute temperature."
+      },
+      {
+        id: 1309,
+        question: "According to the Varshni model, how does the bandgap energy (Eg) change with decreasing temperature?",
+        options: ["Decreases", "Remains constant", "Increases", "Becomes zero"],
+        correctIndex: 2,
+        explanation: "According to the Varshni model, the semiconductor bandgap widens (increases) as temperature decreases."
+      },
+      {
+        id: 1310,
+        question: "What does the acronym MOSFET stand for?",
+        options: ["Metal Oxide Semiconductor Field Effect Transistor", "Metal Oxide Silicon Field Effect Transistor", "Metal Oxide Semiconductor Fast Electron Transistor", "Metal On Semiconductor Field Effect Transistor"],
+        correctIndex: 0,
+        explanation: "MOSFET stands for Metal Oxide Semiconductor Field Effect Transistor."
+      }
+    ]
+  }
+];
+
+if (typeof window !== 'undefined') {
+  window.QUANTUM_MODULES = QUANTUM_MODULES;
+  window.DEFAULT_ASSESSMENTS = QUANTUM_MODULES; // Backward compatibility
+}
+if (typeof module !== 'undefined' && module.exports) {
+  module.exports = { QUANTUM_MODULES };
+}
